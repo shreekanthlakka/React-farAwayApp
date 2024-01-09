@@ -14,7 +14,7 @@ function App() {
 
     const [items, setItems] = useLocalStorage([], "faraway");
 
-    function handleAddForm(item) {
+    function handleAddItems(item) {
         setItems((items) => [...items, item]);
     }
 
@@ -29,16 +29,24 @@ function App() {
     function handleDeletion(id) {
         setItems((items) => items.filter((item) => item.id !== id));
     }
+    function handleClear() {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete all items"
+        );
+        if (confirmed) setItems([]);
+    }
+
     return (
         <div className="app">
             <Logo />
-            <Form handleAddForm={handleAddForm} />
+            <Form onAddItems={handleAddItems} />
             <PackingList
                 items={items}
-                handleDeletion={handleDeletion}
-                handleToggle={handleToggle}
+                onDeleteItem={handleDeletion}
+                onToggleItem={handleToggle}
+                onClearList={handleClear}
             />
-            <Stats />
+            <Stats items={items} />
         </div>
     );
 }

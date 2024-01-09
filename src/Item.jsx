@@ -1,18 +1,18 @@
 /*eslint-disable react/prop-types*/
 
-function Item({ item, handleDeletion, handleToggle }) {
+function Item({ item, onDeleteItem, onToggleItem }) {
     return (
         <>
             <li>
                 <input
                     type="checkbox"
                     value={item.packed}
-                    onChange={() => handleToggle(item.id)}
+                    onChange={() => onToggleItem(item.id)}
                 />
                 <span className={item.packed ? "packed" : ""}>
                     {item.quantity} : {item.description}
                 </span>
-                <button onClick={() => handleDeletion(item.id)}>
+                <button onClick={() => onDeleteItem(item.id)}>
                     <strong>❌</strong>
                 </button>
             </li>

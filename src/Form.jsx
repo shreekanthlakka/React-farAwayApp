@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-function Form({ handleAddForm }) {
+function Form({ onAddItems }) {
     const [quantity, setQuantity] = useState(1);
     const [search, setSearch] = useState("");
 
@@ -17,7 +17,7 @@ function Form({ handleAddForm }) {
             createdAt: Date.now(),
             packed: false,
         };
-        handleAddForm(newItem);
+        onAddItems(newItem);
         setQuantity(1);
         setSearch("");
     }
